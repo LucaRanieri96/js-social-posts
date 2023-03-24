@@ -123,3 +123,7 @@ h1 {
     color: #0CD977;
     cursor: default;
 }
+
+.isLiked {
+    color: rgb(0, 85, 243);
+}

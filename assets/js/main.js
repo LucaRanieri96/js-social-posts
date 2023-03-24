@@ -119,3 +119,38 @@ posts.forEach((info) => {
 
   posts_dom_element.insertAdjacentHTML("beforeend", markup);
 });
+//BONUS 1 
+
+// Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+
+// mi creo un array vuoto dove salveremo gli ID dei post a cui abbiamo messo like
+const postLiked = []
+ 
+// mi creo un addeventlistener per il pulsante like
+const like_dom_element = document.querySelector("i")
+// mi seleziono anche il numero di like che andrà incrementato
+const likeCounter = document.getElementById("like-counter-1")
+
+
+like_dom_element.addEventListener("click", like);
+//console.log(like_dom_element);
+let numberOfLikes = Number.parseInt(likeCounter.textContent, info.likes); //occhio qui!!!! 👀👀👀👀
+
+// prima della funzione mi dichiaro una variabile per contrassegnare lo stato dell'input e facilitarmi il lavoro con le condizioni
+let isLiked = false
+
+// mi scrivo la funzione del like button
+function like() {
+  if (!isLiked) {
+    like_dom_element.classList.add('isLiked');
+    numberOfLikes++;
+    likeCounter.textContent = numberOfLikes;
+    isLiked = !isLiked;
+  } else {
+    like_dom_element.classList.remove('isLiked');
+    numberOfLikes--;
+    likeCounter.textContent = numberOfLikes;
+    isLiked = !isLiked;
+  }
+}
+

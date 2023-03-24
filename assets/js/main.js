@@ -132,9 +132,8 @@ const like_dom_element = document.querySelector("i")
 const likeCounter = document.getElementById("like-counter-1")
 
 
-like_dom_element.addEventListener("click", like);
 //console.log(like_dom_element);
-let numberOfLikes = Number.parseInt(likeCounter.textContent, info.likes); //occhio qui!!!! 👀👀👀👀
+let numberOfLikes = Number.parseInt(likeCounter.textContent); //occhio qui! 👀👀👀👀
 
 // prima della funzione mi dichiaro una variabile per contrassegnare lo stato dell'input e facilitarmi il lavoro con le condizioni
 let isLiked = false
@@ -146,11 +145,15 @@ function like() {
     numberOfLikes++;
     likeCounter.textContent = numberOfLikes;
     isLiked = !isLiked;
+    console.log("hai cliccato sul tasto like");
   } else {
     like_dom_element.classList.remove('isLiked');
     numberOfLikes--;
     likeCounter.textContent = numberOfLikes;
     isLiked = !isLiked;
+    console.log("hai annullato il tasto like");
   }
 }
+
+like_dom_element.addEventListener("click", like);
 

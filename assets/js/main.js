@@ -104,7 +104,7 @@ posts.forEach((info) => {
     <div class="post__footer">
       <div class="likes js-likes">
         <div class="likes__cta">
-          <a class="like-button  js-like-button" href="#" data-postid=""${info.id}"">
+          <a id="like_button" class="like-button  js-like-button" href="#" data-postid=""${info.id}"">
             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
             <span class="like-button__label">Mi Piace</span>
           </a>
@@ -127,12 +127,13 @@ posts.forEach((info) => {
 const postLiked = []
  
 // mi creo un addeventlistener per il pulsante like
-const like_dom_element = document.querySelector("i")
+const like_dom_element = document.getElementById("like_button")
+//console.log(like_dom_element);
+
 // mi seleziono anche il numero di like che andrà incrementato
 const likeCounter = document.getElementById("like-counter-1")
 
 
-//console.log(like_dom_element);
 let numberOfLikes = Number.parseInt(likeCounter.textContent); //occhio qui! 👀👀👀👀
 
 // prima della funzione mi dichiaro una variabile per contrassegnare lo stato dell'input e facilitarmi il lavoro con le condizioni

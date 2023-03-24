@@ -83,7 +83,7 @@ const posts_dom_element = document.getElementById("container");
 
 // ora ciclo all'iterno dell'array e per ogni oggetto di esso mi creo in dom un markup
 
-posts.forEach((info) => {
+posts.forEach( (info) => {
   const markup = `
   <div class="post">
     <div class="post__header">
@@ -127,24 +127,25 @@ posts.forEach((info) => {
 const postLiked = []
  
 // mi creo un addeventlistener per il pulsante like
-const like_dom_element = document.querySelectorAll(".js-like-button")
+const like_dom_elements = document.querySelectorAll(".js-like-button")
 //console.log(like_dom_element);
 
 // mi seleziono anche il numero di like che andrà incrementato
-const likeCounter = document.querySelectorAll(".like-counter-1")
+const likeCounter = document.querySelectorAll(".js-likes-counter")
 
-
-let numberOfLikes = Number.parseInt(likeCounter.textContent); //occhio qui! 👀
+let numberOfLikes = Number.parseInt(likeCounter.textContent); 
 
 // prima della funzione mi dichiaro una variabile per contrassegnare lo stato dell'input e facilitarmi il lavoro con le condizioni
 let isLiked = false
 
 // mi scrivo la funzione del like button
-function like() {
-  
+function like(e) {
+
+  e.preventDefault();
+
   if (!isLiked) {
 
-    like_dom_element.classList.add('isLiked');
+    this.classList.add('isLiked');
     numberOfLikes++;
     likeCounter.textContent = numberOfLikes;
     isLiked = !isLiked;
@@ -152,7 +153,7 @@ function like() {
     // pusho nell'array l'id del post
 
   } else {
-    like_dom_element.classList.remove('isLiked');
+    this.classList.remove('isLiked');
     numberOfLikes--;
     likeCounter.textContent = numberOfLikes;
     isLiked = !isLiked;
@@ -162,5 +163,7 @@ function like() {
   }
 }
 
-like_dom_element.addEventListener("click", like);
-
+like_dom_elements.forEach( (likeEl) =>{
+likeEl.addEventListener("click", like);
+})
+// risolto per un singolo pulsante, ma quando ne premo più di uno la logica va in conflitto, e l'incremento non funziona..

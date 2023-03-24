@@ -104,7 +104,7 @@ posts.forEach((info) => {
     <div class="post__footer">
       <div class="likes js-likes">
         <div class="likes__cta">
-          <a id="like_button" class="like-button  js-like-button" href="#" data-postid=""${info.id}"">
+          <a class="like-button js-like-button" href="#" data-postid=""${info.id}"">
             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
             <span class="like-button__label">Mi Piace</span>
           </a>
@@ -127,32 +127,38 @@ posts.forEach((info) => {
 const postLiked = []
  
 // mi creo un addeventlistener per il pulsante like
-const like_dom_element = document.getElementById("like_button")
+const like_dom_element = document.querySelectorAll(".js-like-button")
 //console.log(like_dom_element);
 
 // mi seleziono anche il numero di like che andrà incrementato
-const likeCounter = document.getElementById("like-counter-1")
+const likeCounter = document.querySelectorAll(".like-counter-1")
 
 
-let numberOfLikes = Number.parseInt(likeCounter.textContent); //occhio qui! 👀👀👀👀
+let numberOfLikes = Number.parseInt(likeCounter.textContent); //occhio qui! 👀
 
 // prima della funzione mi dichiaro una variabile per contrassegnare lo stato dell'input e facilitarmi il lavoro con le condizioni
 let isLiked = false
 
 // mi scrivo la funzione del like button
 function like() {
+  
   if (!isLiked) {
+
     like_dom_element.classList.add('isLiked');
     numberOfLikes++;
     likeCounter.textContent = numberOfLikes;
     isLiked = !isLiked;
     console.log("hai cliccato sul tasto like");
+    // pusho nell'array l'id del post
+
   } else {
     like_dom_element.classList.remove('isLiked');
     numberOfLikes--;
     likeCounter.textContent = numberOfLikes;
     isLiked = !isLiked;
     console.log("hai annullato il tasto like");
+    // pusho nell'array l'id del post
+
   }
 }
 
